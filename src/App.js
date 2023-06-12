@@ -6,44 +6,64 @@ import HomePage from "./pages/HomePage";
 import IntroPage from "./pages/IntroPage";
 import { useEffect, useState } from "react";
 export default function App() {
+  const page1 = "/home";
+  const page2 = "/intro";
+  const page3 = "/about";
+  const page4 = "/works";
   const [value, SetValue] = useState();
   const locate = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (locate.pathname == "/home") {
+    if (locate.pathname == page1) {
       SetValue(0);
-    } else if (locate.pathname == "/intro") {
+    } else if (locate.pathname == page2) {
       SetValue(1);
-    } else if (locate.pathname == "/about") {
+    } else if (locate.pathname == page3) {
       SetValue(2);
-    } else if (locate.pathname == "/works") {
+    } else if (locate.pathname == page4) {
       SetValue(3);
+    } else {
+      SetValue(0);
     }
   });
-  const navigate = useNavigate();
+
   const pageChange = (value) => {
     SetValue(value);
     if (value == 0) {
-      navigate("/home");
+      navigate(page1);
     } else if (value == 1) {
-      navigate("/intro");
+      navigate(page2);
     } else if (value == 2) {
-      navigate("/about");
+      navigate(page3);
     } else if (value == 3) {
-      navigate("/works");
+      navigate(page4);
     }
   };
+
+  const observer = new IntersectionObserver((e) => {
+    e.forEach((box) => {
+      if (box.isIntersecting) {
+      }
+    });
+  });
+
+  const p = document.querySelectorAll("p");
+  p.forEach((e) => {
+    observer.observe(e);
+  });
+
+  function goToScroll(name) {
+    var location = document.getElementsByName("." + name).offsetTop;
+    window.scrollTo({ top: location, behavior: "smooth" });
+  }
+
   return (
-    <div
-      style={{
-        backgroundImage:
-          'url("https://d2u3dcdbebyaiu.cloudfront.net/uploads/atch_img/479/755d945efb0e915a8fb8049a26421ebe_res.jpeg")',
-      }}
-      className="h-[100vh] bg-no-repeat bg-cover"
-    >
+    <div>
       <div className="flex justify-end text-white pt-5 pr-10 fixed w-full">
         <button
           className="ml-10 mr-auto text-[25px]"
-          onClick={() => navigate("/home")}
+          onClick={() => navigate(page1)}
         >
           <i className="fa-solid fa-house self-start"></i>
         </button>
@@ -54,22 +74,25 @@ export default function App() {
           textColor="inherit"
           indicatorColor="secondary"
         >
-          <Tab value={0} label="HOME" />
-          <Tab value={1} label="INTRO" />
-          <Tab value={2} label="ABOUT" />
-          <Tab value={3} label="WORKS" />
+          <Tab value={0} label="HOME" disableRipple />
+          <Tab value={1} label="INTRO" disableRipple />
+          <Tab value={2} label="ABOUT" disableRipple />
+          <Tab value={3} label="WORKS" disableRipple />
         </Tabs>
       </div>
 
-      <div className="flex justify-center items-center text-white text-[50px] h-[800px]">
-        <Routes>
-          <Route path="/home" element={<HomePage />}></Route>
-          <Route path="*" element={<HomePage />}></Route>
-          <Route path="intro" element={<IntroPage />}></Route>
-          <Route path="/about" element={<AboutPage />}></Route>
-          <Route path="/works" element={<WorksPage />}></Route>
-        </Routes>
-      </div>
+      <Routes>
+        <Route path={page1}></Route>
+        <Route path="*"></Route>
+        <Route path={page2}></Route>
+        <Route path={page3}></Route>
+        <Route path={page4}></Route>
+      </Routes>
+
+      <HomePage />
+      <IntroPage />
+      <AboutPage />
+      <WorksPage />
     </div>
   );
 }

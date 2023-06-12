@@ -33,3 +33,10 @@ body,
   display: flex;
   flex-direction: column;
 }
+::-webkit-scrollbar {
+  display: none;
+}
+p {
+  color: white;
+  transition: color 2s;
+}
