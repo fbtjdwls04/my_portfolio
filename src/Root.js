@@ -28,6 +28,9 @@ export default function Root() {
         main: "#ae58f9",
         constrastText: "#fff",
       },
+      secondary: {
+        main: "#fff",
+      },
     },
   });
 
