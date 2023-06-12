@@ -1,12 +1,24 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { Tabs, Tab } from "@mui/material";
 import AboutPage from "./pages/AboutPage";
 import WorksPage from "./pages/WorksPage";
 import HomePage from "./pages/HomePage";
 import IntroPage from "./pages/IntroPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export default function App() {
   const [value, SetValue] = useState();
+  const locate = useLocation();
+  useEffect(() => {
+    if (locate.pathname == "/home") {
+      SetValue(0);
+    } else if (locate.pathname == "/intro") {
+      SetValue(1);
+    } else if (locate.pathname == "/about") {
+      SetValue(2);
+    } else if (locate.pathname == "/works") {
+      SetValue(3);
+    }
+  });
   const navigate = useNavigate();
   const pageChange = (value) => {
     SetValue(value);
