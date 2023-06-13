@@ -1,14 +1,11 @@
 export default function AboutPage() {
   return (
     <>
-      <div
-        style={{
-          backgroundImage: "url(https://picsum.photos/id/20/3670/2462)",
-        }}
-        className="h-[100vh] bg-no-repeat bg-cover"
-      >
-        HOME PAGE
-      </div>
+      <section className="h-[100vh] bg-no-repeat bg-cover bg-green-500">
+        <div className="h-[100vh] w-full flex justify-center items-center flex-col text-[120px] select-none">
+          <p className="text-green-300 font-bold">ABOUT</p>
+        </div>
+      </section>
     </>
   );
 }

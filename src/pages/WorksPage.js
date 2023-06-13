@@ -1,15 +1,11 @@
 export default function WorksPage() {
   return (
     <>
-      <div
-        style={{
-          backgroundImage:
-            "url(https://cdn.pixabay.com/photo/2021/11/04/16/19/travel-6768660_1280.png)",
-        }}
-        className="h-[100vh] bg-no-repeat bg-cover"
-      >
-        HOME PAGE
-      </div>
+      <section className="h-[100vh] bg-no-repeat bg-cover bg-gray-500">
+        <div className="h-[100vh] w-full flex justify-center items-center flex-col text-[120px] select-none">
+          <p className="text-green-300 font-bold">WORKS</p>
+        </div>
+      </section>
     </>
   );
 }

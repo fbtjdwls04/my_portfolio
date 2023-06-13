@@ -4,7 +4,7 @@ import AboutPage from "./pages/AboutPage";
 import WorksPage from "./pages/WorksPage";
 import HomePage from "./pages/HomePage";
 import IntroPage from "./pages/IntroPage";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 export default function App() {
   const page1 = "/home";
   const page2 = "/intro";
@@ -14,6 +14,7 @@ export default function App() {
   const locate = useLocation();
   const navigate = useNavigate();
 
+  // Tab이나 url로 라우팅시 Tab의 바텀바가 따라옴
   useEffect(() => {
     if (locate.pathname == page1) {
       SetValue(0);
@@ -32,31 +33,119 @@ export default function App() {
     SetValue(value);
     if (value == 0) {
       navigate(page1);
+      outerDivRef.current.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     } else if (value == 1) {
       navigate(page2);
+      outerDivRef.current.scrollTo({
+        top: pageHeight,
+        left: 0,
+        behavior: "smooth",
+      });
     } else if (value == 2) {
       navigate(page3);
+      outerDivRef.current.scrollTo({
+        top: pageHeight * 2,
+        left: 0,
+        behavior: "smooth",
+      });
     } else if (value == 3) {
       navigate(page4);
+      outerDivRef.current.scrollTo({
+        top: pageHeight * 3,
+        left: 0,
+        behavior: "smooth",
+      });
     }
   };
 
-  const observer = new IntersectionObserver((e) => {
-    e.forEach((box) => {
-      if (box.isIntersecting) {
+  // 스크롤 조작 시 한 화면씩 움직이기
+  const outerDivRef = useRef();
+  const pageHeight = window.innerHeight;
+  useEffect(() => {
+    const wheelHandler = (e) => {
+      e.preventDefault();
+      const { deltaY } = e;
+      const { scrollTop } = outerDivRef.current; // 스크롤 위쪽 끝부분 위치
+      if (deltaY > 0) {
+        // 스크롤 내릴 때
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
+          //현재 1페이지
+          outerDivRef.current.scrollTo({
+            top: pageHeight,
+            left: 0,
+            behavior: "smooth",
+          });
+          navigate(page2);
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
+          //현재 2페이지
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 2,
+            left: 0,
+            behavior: "smooth",
+          });
+          navigate(page3);
+        } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
+          //현재 3페이지
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 3,
+            left: 0,
+            behavior: "smooth",
+          });
+          navigate(page4);
+        } else {
+          // 현재 4페이지
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 3,
+            left: 0,
+            behavior: "smooth",
+          });
+        }
+      } else {
+        // 스크롤 올릴 때
+        if (scrollTop >= 0 && scrollTop < pageHeight) {
+          //현재 1페이지
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+        } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
+          //현재 2페이지
+          outerDivRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+          });
+          navigate(page1);
+        } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
+          //현재 3페이지
+          outerDivRef.current.scrollTo({
+            top: pageHeight,
+            left: 0,
+            behavior: "smooth",
+          });
+          navigate(page2);
+        } else {
+          // 현재 4페이지
+          outerDivRef.current.scrollTo({
+            top: pageHeight * 2,
+            left: 0,
+            behavior: "smooth",
+          });
+          navigate(page3);
+        }
       }
-    });
-  });
-
-  const p = document.querySelectorAll("p");
-  p.forEach((e) => {
-    observer.observe(e);
-  });
-
-  function goToScroll(name) {
-    var location = document.getElementsByName("." + name).offsetTop;
-    window.scrollTo({ top: location, behavior: "smooth" });
-  }
+    };
+    const outerDivRefCurrent = outerDivRef.current;
+    outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+    return () => {
+      outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
+    };
+  }, []);
 
   return (
     <div>
@@ -88,11 +177,12 @@ export default function App() {
         <Route path={page3}></Route>
         <Route path={page4}></Route>
       </Routes>
-
-      <HomePage />
-      <IntroPage />
-      <AboutPage />
-      <WorksPage />
+      <div ref={outerDivRef} id="outer">
+        <HomePage />
+        <IntroPage />
+        <AboutPage />
+        <WorksPage />
+      </div>
     </div>
   );
 }

@@ -6,12 +6,13 @@ export default function HomePage() {
   useEffect(() => {
     setTimeout(() => {
       setBgOpacity(0.7);
-      setColor(["#6EE7B7", "#93C5FD"]);
+      setColor(["#6EE7B7", "yellow"]);
     }, 1000);
   });
   return (
     <>
       <section
+        id="home"
         className="h-[100vh] bg-no-repeat bg-cover "
         style={{
           backgroundImage: "url(https://picsum.photos/id/63/5000/2813)",
