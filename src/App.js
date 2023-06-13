@@ -10,49 +10,37 @@ export default function App() {
   const page2 = "/intro";
   const page3 = "/about";
   const page4 = "/works";
-  const [value, SetValue] = useState();
+  const [value, SetValue] = useState(1);
   const locate = useLocation();
   const navigate = useNavigate();
 
   // Tab이나 url로 라우팅시 Tab의 바텀바가 따라옴
-  useEffect(() => {
-    if (locate.pathname == page1) {
-      SetValue(0);
-    } else if (locate.pathname == page2) {
-      SetValue(1);
-    } else if (locate.pathname == page3) {
-      SetValue(2);
-    } else if (locate.pathname == page4) {
-      SetValue(3);
-    } else {
-      SetValue(0);
-    }
-  });
+  useEffect(() => {});
 
   const pageChange = (value) => {
     SetValue(value);
-    if (value == 0) {
+    if (value == 1) {
       navigate(page1);
       outerDivRef.current.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth",
       });
-    } else if (value == 1) {
+    } else if (value == 2) {
       navigate(page2);
       outerDivRef.current.scrollTo({
         top: pageHeight,
         left: 0,
         behavior: "smooth",
       });
-    } else if (value == 2) {
+    } else if (value == 3) {
       navigate(page3);
       outerDivRef.current.scrollTo({
         top: pageHeight * 2,
         left: 0,
         behavior: "smooth",
       });
-    } else if (value == 3) {
+    } else if (value == 4) {
       navigate(page4);
       outerDivRef.current.scrollTo({
         top: pageHeight * 3,
@@ -79,6 +67,7 @@ export default function App() {
             left: 0,
             behavior: "smooth",
           });
+          SetValue(2);
           navigate(page2);
         } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
           //현재 2페이지
@@ -87,6 +76,7 @@ export default function App() {
             left: 0,
             behavior: "smooth",
           });
+          SetValue(3);
           navigate(page3);
         } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
           //현재 3페이지
@@ -95,6 +85,7 @@ export default function App() {
             left: 0,
             behavior: "smooth",
           });
+          SetValue(4);
           navigate(page4);
         } else {
           // 현재 4페이지
@@ -120,6 +111,7 @@ export default function App() {
             left: 0,
             behavior: "smooth",
           });
+          SetValue(1);
           navigate(page1);
         } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
           //현재 3페이지
@@ -128,6 +120,7 @@ export default function App() {
             left: 0,
             behavior: "smooth",
           });
+          SetValue(2);
           navigate(page2);
         } else {
           // 현재 4페이지
@@ -136,16 +129,53 @@ export default function App() {
             left: 0,
             behavior: "smooth",
           });
+          SetValue(3);
           navigate(page3);
         }
       }
     };
     const outerDivRefCurrent = outerDivRef.current;
     outerDivRefCurrent.addEventListener("wheel", wheelHandler);
+    if (locate.pathname == page1) {
+      SetValue(1);
+      outerDivRef.current.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else if (locate.pathname == page2) {
+      SetValue(2);
+      outerDivRef.current.scrollTo({
+        top: pageHeight,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else if (locate.pathname == page3) {
+      SetValue(3);
+      outerDivRef.current.scrollTo({
+        top: pageHeight * 2,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else if (locate.pathname == page4) {
+      SetValue(4);
+      outerDivRef.current.scrollTo({
+        top: pageHeight * 3,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      SetValue(1);
+      outerDivRef.current.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
+    }
     return () => {
       outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
     };
-  }, []);
+  });
 
   return (
     <div>
@@ -163,10 +193,10 @@ export default function App() {
           textColor="inherit"
           indicatorColor="secondary"
         >
-          <Tab value={0} label="HOME" disableRipple />
-          <Tab value={1} label="INTRO" disableRipple />
-          <Tab value={2} label="ABOUT" disableRipple />
-          <Tab value={3} label="WORKS" disableRipple />
+          <Tab value={1} label="HOME" disableRipple />
+          <Tab value={2} label="INTRO" disableRipple />
+          <Tab value={3} label="ABOUT" disableRipple />
+          <Tab value={4} label="WORKS" disableRipple />
         </Tabs>
       </div>
 
