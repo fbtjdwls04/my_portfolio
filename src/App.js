@@ -14,9 +14,15 @@ export default function App() {
   const locate = useLocation();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const topbar = document.getElementById("topbar");
+    topbar.style.transition = "top 0.5s";
+    topbar.style.top = "50px";
+    setTimeout(() => {
+      topbar.style.top = 0;
+    }, 500);
+  }, []);
   // Tab이나 url로 라우팅시 Tab의 바텀바가 따라옴
-  useEffect(() => {});
-
   const pageChange = (value) => {
     SetValue(value);
     if (value == 1) {
@@ -179,7 +185,10 @@ export default function App() {
 
   return (
     <div>
-      <div className="flex justify-end text-white pt-5 pr-10 fixed w-full">
+      <div
+        id="topbar"
+        className="flex justify-end text-white pt-5 pr-10 fixed w-full top-[-100px]"
+      >
         <button
           className="ml-10 mr-auto text-[25px]"
           onClick={() => navigate(page1)}
