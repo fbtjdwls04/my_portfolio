@@ -22,37 +22,30 @@ export default function App() {
       topbar.style.top = 0;
     }, 500);
   }, []);
+
+  function scrollMove(pageHeight) {
+    outerDivRef.current.scrollTo({
+      top: pageHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+  }
+
   // Tab이나 url로 라우팅시 Tab의 바텀바가 따라옴
   const pageChange = (value) => {
     SetValue(value);
     if (value == 1) {
       navigate(page1);
-      outerDivRef.current.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(0);
     } else if (value == 2) {
       navigate(page2);
-      outerDivRef.current.scrollTo({
-        top: pageHeight,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(pageHeight);
     } else if (value == 3) {
       navigate(page3);
-      outerDivRef.current.scrollTo({
-        top: pageHeight * 2,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(pageHeight * 2);
     } else if (value == 4) {
       navigate(page4);
-      outerDivRef.current.scrollTo({
-        top: pageHeight * 3,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(pageHeight * 3);
     }
   };
 
@@ -68,73 +61,41 @@ export default function App() {
         // 스크롤 내릴 때
         if (scrollTop >= 0 && scrollTop < pageHeight) {
           //현재 1페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(pageHeight);
           SetValue(2);
           navigate(page2);
         } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
           //현재 2페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 2,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(pageHeight * 2);
           SetValue(3);
           navigate(page3);
         } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
           //현재 3페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 3,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(pageHeight * 3);
           SetValue(4);
           navigate(page4);
         } else {
           // 현재 4페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 3,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(pageHeight * 3);
         }
       } else {
         // 스크롤 올릴 때
         if (scrollTop >= 0 && scrollTop < pageHeight) {
           //현재 1페이지
-          outerDivRef.current.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(0);
         } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
           //현재 2페이지
-          outerDivRef.current.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(0);
           SetValue(1);
           navigate(page1);
         } else if (scrollTop >= pageHeight * 2 && scrollTop < pageHeight * 3) {
           //현재 3페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(pageHeight);
           SetValue(2);
           navigate(page2);
         } else {
           // 현재 4페이지
-          outerDivRef.current.scrollTo({
-            top: pageHeight * 2,
-            left: 0,
-            behavior: "smooth",
-          });
+          scrollMove(pageHeight * 2);
           SetValue(3);
           navigate(page3);
         }
@@ -144,39 +105,19 @@ export default function App() {
     outerDivRefCurrent.addEventListener("wheel", wheelHandler);
     if (locate.pathname == page1) {
       SetValue(1);
-      outerDivRef.current.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(0);
     } else if (locate.pathname == page2) {
       SetValue(2);
-      outerDivRef.current.scrollTo({
-        top: pageHeight,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(pageHeight);
     } else if (locate.pathname == page3) {
       SetValue(3);
-      outerDivRef.current.scrollTo({
-        top: pageHeight * 2,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(pageHeight * 2);
     } else if (locate.pathname == page4) {
       SetValue(4);
-      outerDivRef.current.scrollTo({
-        top: pageHeight * 3,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(pageHeight * 3);
     } else {
       SetValue(1);
-      outerDivRef.current.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
+      scrollMove(0);
     }
     return () => {
       outerDivRefCurrent.removeEventListener("wheel", wheelHandler);
