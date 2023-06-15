@@ -5,7 +5,7 @@ export default function HomePage() {
   const [color, setColor] = useState(["#ffffff", "#ffffff"]);
   useEffect(() => {
     setTimeout(() => {
-      setBgOpacity(0.7);
+      setBgOpacity(0.8);
       setColor(["#6EE7B7", "yellow"]);
     }, 1000);
   });

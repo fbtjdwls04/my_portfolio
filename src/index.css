@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 지마켓산스 폰트 적용 */
 @font-face {
   font-family: "GmarketSansMedium";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
@@ -9,8 +10,13 @@
   font-weight: normal;
   font-style: normal;
 }
-
-/* 지마켓산스 폰트 적용 */
+@font-face {
+  font-family: "TTWanjudaedunsancheB";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/TTWanjudaedunsancheB.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
 html > body,
 html > body input,
 html > body select,
@@ -51,4 +57,9 @@ body {
 #home p {
   color: white;
   transition: color 2s;
+}
+
+#about h1 {
+  font-family: "TTWanjudaedunsancheB";
+  text-underline-position: under;
 }

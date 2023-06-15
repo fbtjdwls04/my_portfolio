@@ -1,9 +1,10 @@
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { Tabs, Tab } from "@mui/material";
+import { Tabs, Tab, colors } from "@mui/material";
 import AboutPage from "./pages/AboutPage";
 import WorksPage from "./pages/WorksPage";
 import HomePage from "./pages/HomePage";
 import StackPage from "./pages/StackPage";
+import classnames from "classnames";
 import { useEffect, useState, useRef } from "react";
 export default function App() {
   const page1 = "/1";
@@ -12,6 +13,7 @@ export default function App() {
   const page4 = "/4";
   const [value, SetValue] = useState(1);
   const locate = useLocation();
+  const nowPage = locate.pathname;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,20 +28,13 @@ export default function App() {
   function scrollMove(pageHeight) {
     outerDivRef.current.scrollTo({
       top: pageHeight,
-      left: 0,
       behavior: "smooth",
     });
   }
-
-  // Tab이나 url로 라우팅시 Tab의 바텀바가 따라옴
-  const pageChange = (value) => {
-    SetValue(value);
-    navigate("/" + value);
-  };
-
   // 스크롤 조작 시 한 화면씩 움직이기
   const outerDivRef = useRef();
   const pageHeight = window.innerHeight;
+  let timer;
   useEffect(() => {
     const wheelHandler = (e) => {
       e.preventDefault();
@@ -58,16 +53,16 @@ export default function App() {
     const outerDivRefCurrent = outerDivRef.current;
     outerDivRefCurrent.addEventListener("wheel", wheelHandler);
     // 주소창에 직접 입력시 스크롤 이동
-    if (locate.pathname == page1) {
+    if (nowPage == page1) {
       SetValue(1);
       scrollMove(0);
-    } else if (locate.pathname == page2) {
+    } else if (nowPage == page2) {
       SetValue(2);
       scrollMove(pageHeight);
-    } else if (locate.pathname == page3) {
+    } else if (nowPage == page3) {
       SetValue(3);
       scrollMove(pageHeight * 2);
-    } else if (locate.pathname == page4) {
+    } else if (nowPage == page4) {
       SetValue(4);
       scrollMove(pageHeight * 3);
     } else {
@@ -83,7 +78,11 @@ export default function App() {
     <div>
       <div
         id="topbar"
-        className="flex justify-end text-white pt-5 pr-10 fixed w-full top-[-100px]"
+        className={classnames(
+          "flex justify-end pt-5 pr-10 fixed w-full top-[-100px] text-white",
+          { "text-[#ae58f9]": nowPage == page2 },
+          { "text-white": nowPage != page2 }
+        )}
       >
         <button
           className="ml-10 mr-auto text-[25px]"
@@ -93,14 +92,14 @@ export default function App() {
         </button>
         <Tabs
           value={value}
-          onChange={(e, value) => pageChange(value)}
+          onChange={(e, value) => navigate("/" + value)}
           aria-label="secondary tabs example"
           textColor="inherit"
-          indicatorColor="secondary"
+          indicatorColor={nowPage == page2 ? "primary" : "secondary"}
         >
           <Tab value={1} label="HOME" disableRipple />
-          <Tab value={2} label="INTRO" disableRipple />
-          <Tab value={3} label="ABOUT" disableRipple />
+          <Tab value={2} label="ABOUT" disableRipple />
+          <Tab value={3} label="STACK" disableRipple />
           <Tab value={4} label="WORKS" disableRipple />
         </Tabs>
       </div>
