@@ -79,8 +79,8 @@ export default function App() {
       <div
         id="topbar"
         className={classnames(
-          "flex justify-end pt-5 pr-10 fixed w-full top-[-100px] text-white",
-          { "text-[#ae58f9]": nowPage == page2 },
+          "flex justify-end pt-5 pr-10 fixed w-full top-[-100px] z-10",
+          { "text-purple-900": nowPage == page2 },
           { "text-white": nowPage != page2 }
         )}
       >
