@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Circle from "../components/Circle";
 
 export default function HomePage() {
   const [bgOpacity, setBgOpacity] = useState(1);
@@ -13,7 +14,7 @@ export default function HomePage() {
     <>
       <section
         id="home"
-        className="h-[100vh] bg-no-repeat bg-cover"
+        className="h-[100vh] bg-no-repeat bg-cover relative overflow-hidden"
         style={{
           backgroundImage: "url(https://picsum.photos/id/63/5000/2813)",
         }}

@@ -16,6 +16,7 @@ export default function App() {
   const nowPage = locate.pathname;
   const navigate = useNavigate();
 
+  // 처음 home 화면 랜더시 탑바 움직임
   useEffect(() => {
     const topbar = document.getElementById("topbar");
     topbar.style.transition = "top 0.5s";
@@ -24,14 +25,15 @@ export default function App() {
       topbar.style.top = 0;
     }, 500);
   }, []);
-
+  // 스크롤 이동 범위(한 화면씩)
   function scrollMove(pageHeight) {
     outerDivRef.current.scrollTo({
       top: pageHeight,
       behavior: "smooth",
     });
   }
-  // 스크롤 조작 시 한 화면씩 움직이기
+
+  // 스크롤 조작 시 앞뒤로 주소 라우팅
   const outerDivRef = useRef();
   const pageHeight = window.innerHeight;
   let timer;
@@ -45,6 +47,7 @@ export default function App() {
           navigate("/" + (value + 1));
         }
       } else {
+        // 스크롤 올릴 때
         if (value > 1) {
           navigate("/" + (value - 1));
         }
@@ -52,7 +55,7 @@ export default function App() {
     };
     const outerDivRefCurrent = outerDivRef.current;
     outerDivRefCurrent.addEventListener("wheel", wheelHandler);
-    // 주소창에 직접 입력시 스크롤 이동
+    // 현재 주소를 기준으로 스크롤 이동 및 Tabs의 value값 변경
     if (nowPage == page1) {
       SetValue(1);
       scrollMove(0);
@@ -87,6 +90,9 @@ export default function App() {
         <button
           className="ml-10 mr-auto text-[25px]"
           onClick={() => navigate(page1)}
+          style={{
+            transition: "color 1s",
+          }}
         >
           <i className="fa-solid fa-house self-start"></i>
         </button>
@@ -96,6 +102,9 @@ export default function App() {
           aria-label="secondary tabs example"
           textColor="inherit"
           indicatorColor={nowPage == page2 ? "primary" : "secondary"}
+          style={{
+            transition: "color 1s",
+          }}
         >
           <Tab value={1} label="HOME" disableRipple />
           <Tab value={2} label="ABOUT" disableRipple />
