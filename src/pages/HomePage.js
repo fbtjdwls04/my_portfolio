@@ -2,44 +2,83 @@ import { useEffect, useState } from "react";
 import Circle from "../components/Circle";
 
 export default function HomePage() {
-  const [bgOpacity, setBgOpacity] = useState(1);
-  const [color, setColor] = useState(["#ffffff", "#ffffff"]);
+  const [bar, setBar] = useState(0);
+  const [trans, setTrans] = useState(-100);
+  const [opacity, setOpacity] = useState(0);
+  const [color, setColor] = useState("white");
   useEffect(() => {
-    setTimeout(() => {
-      setBgOpacity(0.8);
-      setColor(["#6EE7B7", "yellow"]);
-    }, 1000);
-  });
+    setBar(30);
+    setTrans(0);
+    setOpacity(1);
+    setColor("yellow");
+  }, []);
   return (
     <>
       <section
         id="home"
         className="h-[100vh] bg-no-repeat bg-cover relative overflow-hidden"
-        style={{
-          backgroundImage: "url(https://picsum.photos/id/63/5000/2813)",
-        }}
       >
-        <div
-          className="h-[100vh] w-full flex justify-center items-center flex-col select-none"
-          style={{
-            backgroundColor: `rgba(0,0,0,${bgOpacity})`,
-            transition: "background-color 5s",
-          }}
-        >
+        <div className="h-[100vh] w-full flex justify-center items-center flex-col select-none">
           <div className="lg:scale-100 md:scale-50 whitespace-nowrap">
             <p
-              className="font-bold text-[120px]"
+              className="font-bold text-[30px]"
               style={{
-                color: color[0],
+                transition: "all 0.5s",
+                position: "relative",
+                top: trans,
+                opacity,
               }}
             >
-              FRONT-END
-              <span className="text-white text-[50px] ml-7">DEV.</span>
+              <span className="text-[yellow]">RYU</span> SEONG JIN
+            </p>
+            <p className="flex font-bold text-[120px] items-end">
+              <span
+                style={{
+                  transition: "all 0.5s 0.5s",
+                  position: "relative",
+                  left: trans,
+                  opacity,
+                }}
+              >
+                FRONT
+              </span>
+              <div
+                className="my-auto h-[10px] bg-white mx-2"
+                style={{
+                  width: bar,
+                  transition: "width 0.5s 2s",
+                }}
+              ></div>
+              <span
+                style={{
+                  transition: "all 0.5s 1s",
+                  position: "relative",
+                  top: trans,
+                  opacity,
+                }}
+              >
+                END
+              </span>
+              <span
+                className="text-white text-[50px] ml-7 mb-6"
+                style={{
+                  transition: "all 0.5s 1s",
+                  position: "relative",
+                  right: trans,
+                  opacity,
+                }}
+              >
+                DEV.
+              </span>
             </p>
             <p
               className="font-bold text-[30px] text-center"
               style={{
-                color: color[1],
+                transition: "all 0.5s 1.5s, color 0.5s 2s",
+                position: "relative",
+                bottom: trans,
+                opacity,
+                color,
               }}
             >
               PORT FOLIO

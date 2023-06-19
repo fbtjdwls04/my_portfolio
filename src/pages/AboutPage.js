@@ -8,12 +8,17 @@ export default function AboutPage() {
       <section
         id="about"
         className="h-[100vh] flex relative overflow-hidden flex-col"
+        style={{
+          backgroundColor: locate.pathname == "/2" ? "white" : "black",
+          transition: "background-color 1s",
+        }}
       >
-        <div className="bg-white w-[900px] h-full mx-auto flex flex-col items-center">
+        <div className="w-[900px] h-full ml-[300px] flex flex-col items-center">
           <h1
             className="mt-[150px] p-2 text-[50px]"
             style={{
-              transition: "opacity 0.5s 0.4s",
+              transition:
+                locate.pathname == "/2" ? "opacity 0.5s 0.4s" : "opacity 0.3s",
               opacity: locate.pathname == "/2" ? 1 : 0,
             }}
           >
@@ -22,14 +27,16 @@ export default function AboutPage() {
           <div
             className="h-1 bg-blue-500"
             style={{
-              transition: "width 0.3s 0.5s linear",
-              width: locate.pathname == "/2" ? 200 : 0,
+              transition:
+                locate.pathname == "/2" ? "width 0.3s 1s linear" : "width 0.3s",
+              width: locate.pathname == "/2" ? 150 : 0,
             }}
           ></div>
           <p
             className="flex-col flex text-center mt-[60px] leading-7"
             style={{
-              transition: "opacity 0.5s 0.5s",
+              transition:
+                locate.pathname == "/2" ? "opacity 0.5s 0.5s" : "opacity 0.3s",
               opacity: locate.pathname == "/2" ? 1 : 0,
             }}
           >
@@ -42,23 +49,24 @@ export default function AboutPage() {
           </p>
         </div>
         <div
-          className="card w-96 bg-blue-100 shadow-xl absolute top-[150px]"
+          className="card w-80 bg-gray-100 shadow-xl absolute top-[130px]"
           style={{
             transition: locate.pathname == "/2" ? "all 0.5s 1s" : "all 0.3s",
-            right: locate.pathname == "/2" ? 280 : 180,
+            right: locate.pathname == "/2" ? 500 : 300,
             opacity: locate.pathname == "/2" ? 1 : 0,
           }}
         >
           <figure className="px-10 pt-10">
             <img
               src="https://images.chosun.com/resizer/u9nJRxs0BbtjygJ4HzKukecXnOk=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/UVBJZL3RXAB36BDSHVM3MW2WNY.jpg"
-              alt="Shoes"
+              alt=""
               className="rounded-xl"
             />
           </figure>
           <div className="card-body items-center text-center">
             <h2 className="card-title">이름 : 류성진</h2>
             <p>생년월일 : 1993-07-02</p>
+            <p>HP : 010-0000-0000</p>
             <p>학습처 : 코리아 IT 아카데미</p>
             <p>⁕ 프론트엔드 수업 수료</p>
             <p>⁕ 백엔드 수업 예정</p>
