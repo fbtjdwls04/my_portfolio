@@ -5,7 +5,12 @@ import Circle from "./Circle";
 export default function CircleDeco() {
   const locate = useLocation();
   return (
-    <>
+    <div
+      style={{
+        transition: "opacity 0.5s",
+        opacity: locate.pathname == "/2" ? 1 : 0,
+      }}
+    >
       <div
         style={{
           position: "relative",
@@ -15,7 +20,7 @@ export default function CircleDeco() {
       >
         <Circle
           size={700}
-          bottom={-450}
+          bottom={-550}
           left={350}
           backgroundColor={"rgb(180,230,180)"}
         />
@@ -86,6 +91,6 @@ export default function CircleDeco() {
           backgroundColor={"#ffebf7"}
         />
       </div>
-    </>
+    </div>
   );
 }

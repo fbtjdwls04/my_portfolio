@@ -72,7 +72,7 @@ export default function HomePage() {
               </span>
             </p>
             <p
-              className="font-bold text-[30px] text-center"
+              className="font-bold text-[30px] text-center tracking-[10px]"
               style={{
                 transition: "all 0.5s 1.5s, color 0.5s 2s",
                 position: "relative",
@@ -81,7 +81,7 @@ export default function HomePage() {
                 color,
               }}
             >
-              PORT FOLIO
+              PORTFOLIO
             </p>
           </div>
         </div>

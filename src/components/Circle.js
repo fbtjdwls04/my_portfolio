@@ -1,7 +1,7 @@
 export default function Circle({ size, left, bottom, backgroundColor }) {
   return (
     <div
-      className="rounded-full absolute hover:scale-110"
+      className="rounded-[40%] absolute hover:scale-110"
       style={{
         height: size,
         width: size,

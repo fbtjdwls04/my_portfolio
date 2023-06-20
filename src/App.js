@@ -6,6 +6,9 @@ import HomePage from "./pages/HomePage";
 import StackPage from "./pages/StackPage";
 import classnames from "classnames";
 import { useEffect, useState, useRef } from "react";
+
+let timer;
+
 export default function App() {
   const page1 = "/1";
   const page2 = "/2";
@@ -36,20 +39,24 @@ export default function App() {
   // 스크롤 조작 시 앞뒤로 주소 라우팅
   const outerDivRef = useRef();
   const pageHeight = window.innerHeight;
-  let timer;
   useEffect(() => {
     const wheelHandler = (e) => {
       e.preventDefault();
       const { deltaY } = e;
-      if (deltaY > 0) {
-        // 스크롤 내릴 때
-        if (value < 4) {
-          navigate("/" + (value + 1));
-        }
-      } else {
-        // 스크롤 올릴 때
-        if (value > 1) {
-          navigate("/" + (value - 1));
+      if (!timer) {
+        timer = setTimeout(() => {
+          timer = null;
+        }, 500);
+        if (deltaY > 0) {
+          // 스크롤 내릴 때
+          if (value < 4) {
+            navigate("/" + (value + 1));
+          }
+        } else {
+          // 스크롤 올릴 때
+          if (value > 1) {
+            navigate("/" + (value - 1));
+          }
         }
       }
     };
@@ -79,7 +86,7 @@ export default function App() {
 
   return (
     <div>
-      <div
+      <header
         id="topbar"
         className={classnames(
           "flex justify-end pt-5 pr-10 fixed w-full top-[-100px] z-10",
@@ -104,6 +111,7 @@ export default function App() {
           indicatorColor={nowPage == page2 ? "primary" : "secondary"}
           style={{
             transition: "color 1s",
+            opacity: 1,
           }}
         >
           <Tab value={1} label="HOME" disableRipple />
@@ -111,13 +119,13 @@ export default function App() {
           <Tab value={3} label="STACK" disableRipple />
           <Tab value={4} label="WORKS" disableRipple />
         </Tabs>
-      </div>
-      <div ref={outerDivRef} id="outer">
+      </header>
+      <section ref={outerDivRef} id="outer">
         <HomePage />
         <AboutPage />
         <StackPage />
         <WorksPage />
-      </div>
+      </section>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export default function AboutPage() {
         className="h-[100vh] flex relative overflow-hidden flex-col"
         style={{
           backgroundColor: locate.pathname == "/2" ? "white" : "black",
-          transition: "background-color 1s",
+          transition: "background-color 0.5s",
         }}
       >
         <div className="w-[900px] h-full ml-[300px] flex flex-col items-center">
@@ -43,8 +43,12 @@ export default function AboutPage() {
             <span>안녕하세요.</span>
             <span>개발자를 꿈 꾸는 '류성진' 이라고 합니다.</span>
             <span>어릴적부터 막연하게 개발을 해보고 싶다 생각했지만</span>
-            <span>돌고 돌아 이제서야 도전을 하게 되었습니다.</span>
-            <span>제 목표는 조금씩이라도 끊임없이 성장하는것입니다.</span>
+            <span>돌고 돌아 이제서야 도전하게 되었습니다.</span>
+            <span>아직 모르는 것 투성이지만</span>
+            <span>그만큼 배울 것이 많다는 것에 설렘을 느낍니다.</span>
+            <br />
+            <span>프론트엔드 백엔드 구분없이 전부 알아가고 싶고</span>
+            <span>마라톤을 하듯, 꾸준히 나아가는 것이 제 목표입니다.</span>
             <span>잘 부탁드립니다.</span>
           </p>
         </div>
@@ -68,8 +72,7 @@ export default function AboutPage() {
             <p>생년월일 : 1993-07-02</p>
             <p>HP : 010-0000-0000</p>
             <p>학습처 : 코리아 IT 아카데미</p>
-            <p>⁕ 프론트엔드 수업 수료</p>
-            <p>⁕ 백엔드 수업 예정</p>
+            <p>⁕ 풀스택 과정 수료중</p>
           </div>
         </div>
         <CircleDeco />
