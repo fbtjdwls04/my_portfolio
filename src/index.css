@@ -54,7 +54,8 @@ body {
 }
 /* 스크롤 없애기 끝*/
 
-#home p {
+/* home 페이지 시작*/
+#home {
   color: white;
   transition: color 2s;
 }
@@ -74,12 +75,17 @@ body {
     background-position: 0% 50%;
   }
 }
+/* home 페이지 끝*/
 
+/* about 페이지 시작 */
 #about h1 {
   font-family: "TTWanjudaedunsancheB";
   text-underline-position: under;
 }
+/* about 페이지 끝*/
 
+/* stack 페이지 시작 */
 #stack {
   background-image: linear-gradient(90deg, black, #101010, #101010, black);
 }
+/* stack 페이지 끝 */

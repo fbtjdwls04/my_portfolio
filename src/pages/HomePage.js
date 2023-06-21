@@ -14,13 +14,10 @@ export default function HomePage() {
   }, []);
   return (
     <>
-      <section
-        id="home"
-        className="h-[100vh] bg-no-repeat bg-cover relative overflow-hidden"
-      >
+      <section id="home" className="h-[100vh] relative overflow-hidden">
         <div className="h-[100vh] w-full flex justify-center items-center flex-col select-none">
           <div className="lg:scale-100 md:scale-50 whitespace-nowrap">
-            <p
+            <div
               className="font-bold text-[30px]"
               style={{
                 transition: "all 0.5s",
@@ -30,8 +27,8 @@ export default function HomePage() {
               }}
             >
               <span className="text-[yellow]">RYU</span> SEONG JIN
-            </p>
-            <p className="flex font-bold text-[120px] items-end">
+            </div>
+            <div className="flex font-bold text-[120px] items-end">
               <span
                 style={{
                   transition: "all 0.5s 0.5s",
@@ -70,7 +67,7 @@ export default function HomePage() {
               >
                 DEV.
               </span>
-            </p>
+            </div>
             <p
               className="font-bold text-[30px] text-center tracking-[10px]"
               style={{

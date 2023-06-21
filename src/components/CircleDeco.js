@@ -9,6 +9,9 @@ export default function CircleDeco() {
       style={{
         transition: "opacity 0.5s",
         opacity: locate.pathname == "/2" ? 1 : 0,
+        position: "absolute",
+        bottom: -100,
+        left: "calc(50%)",
       }}
     >
       <div
@@ -87,7 +90,7 @@ export default function CircleDeco() {
         <Circle
           size={900}
           left={-300}
-          bottom={-800}
+          bottom={-750}
           backgroundColor={"#ffebf7"}
         />
       </div>
