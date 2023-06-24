@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Tabs, Tab } from "@mui/material";
 import { useEffect, useState } from "react";
 import classnames from "classnames";
-
 let timer;
 
 export default function Topbar({ outerDivRef }) {
@@ -64,7 +63,6 @@ export default function Topbar({ outerDivRef }) {
     if (nowPage === page1) {
       SetValue(1);
       scrollMove(0);
-      console.log("안녕");
     } else if (nowPage === page2) {
       SetValue(2);
       scrollMove(pageHeight);
@@ -99,7 +97,7 @@ export default function Topbar({ outerDivRef }) {
           transition: "color 1s",
         }}
       >
-        <i className="fa-solid fa-house self-start"></i>
+        <img src="image/favicon.ico" alt="SJ" className="w-8" />
       </button>
       <Tabs
         value={value}

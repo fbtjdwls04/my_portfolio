@@ -16,7 +16,7 @@ export default function HomePage() {
     <>
       <section id="home" className="h-[100vh] relative overflow-hidden">
         <div className="h-[100vh] w-full flex justify-center items-center flex-col select-none">
-          <div className="lg:scale-100 md:scale-50 whitespace-nowrap">
+          <div className="whitespace-nowrap">
             <div
               className="font-bold text-[30px]"
               style={{

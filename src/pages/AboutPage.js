@@ -13,7 +13,7 @@ export default function AboutPage() {
           transition: "background-color 0.5s",
         }}
       >
-        <div className="w-[900px] h-full ml-[300px] flex flex-col items-center">
+        <div className="w-[900px] h-full ml-[12%] flex flex-col items-center">
           <h1
             className="mt-[150px] p-2 text-[50px]"
             style={{
@@ -56,7 +56,10 @@ export default function AboutPage() {
           className="card w-80 bg-gray-100 shadow-xl absolute top-[130px]"
           style={{
             transition: locate.pathname == "/2" ? "all 0.5s 1s" : "all 0.3s",
-            right: locate.pathname == "/2" ? 500 : 300,
+            right:
+              locate.pathname == "/2"
+                ? "calc(50% - 500px)"
+                : "calc(50% - 800px)",
             opacity: locate.pathname == "/2" ? 1 : 0,
           }}
         >
