@@ -1,16 +1,42 @@
+import { useLocation } from "react-router-dom";
+
 export default function StackPage() {
+  const locate = useLocation();
   return (
     <>
       <section
         id="stack"
         className="h-[100vh] flex justify-center items-center flex-col select-none"
       >
-        <h1 className="text-[gold] text-center mt-[120px] text-[40px] font-bold">
+        <h1
+          className="text-[gold] text-center mt-[120px] text-[40px] font-bold relative"
+          style={{
+            transition: "all 0.5s 0.4s",
+            top: locate.pathname == "/3" ? 0 : -30,
+            opacity: locate.pathname == "/3" ? 1 : 0,
+          }}
+        >
           MY SKILL
         </h1>
         <nav className="h-full w-[70%] flex flex-col p-10 mt-5 text-white gap-[35px] items-center">
-          <p className="text-black">FRONT-END</p>
-          <ul className="gap-5 flex">
+          <p
+            className="text-black relative"
+            style={{
+              transition: "all 0.5s 0.5s",
+              top: locate.pathname == "/3" ? 0 : -30,
+              opacity: locate.pathname == "/3" ? 1 : 0,
+            }}
+          >
+            FRONT-END
+          </p>
+          <ul
+            className="gap-5 flex relative"
+            style={{
+              transition: "all 0.5s 0.6s",
+              top: locate.pathname == "/3" ? 0 : -30,
+              opacity: locate.pathname == "/3" ? 1 : 0,
+            }}
+          >
             <li>
               <img
                 src="https://images.velog.io/images/milkyway/post/4b6bec16-34ed-4d40-acb7-23d596bb497e/HTML%20logo.jpeg"
@@ -46,8 +72,24 @@ export default function StackPage() {
               />
             </li>
           </ul>
-          <p className="text-yellow-500">BACK-END</p>
-          <ul className="gap-5 flex">
+          <p
+            className="text-yellow-500 relative"
+            style={{
+              transition: "all 0.5s 0.7s",
+              top: locate.pathname == "/3" ? 0 : -30,
+              opacity: locate.pathname == "/3" ? 1 : 0,
+            }}
+          >
+            BACK-END
+          </p>
+          <ul
+            className="gap-5 flex relative"
+            style={{
+              transition: "all 0.5s 0.8s",
+              top: locate.pathname == "/3" ? 0 : -30,
+              opacity: locate.pathname == "/3" ? 1 : 0,
+            }}
+          >
             <li>
               <img
                 src="https://w7.pngwing.com/pngs/505/123/png-transparent-mysql-hd-logo.png"
@@ -76,8 +118,24 @@ export default function StackPage() {
               />
             </li>
           </ul>
-          <p className="text-yellow-500">LANGUAGE</p>
-          <ul className="gap-5 flex">
+          <p
+            className="text-yellow-500 relative"
+            style={{
+              transition: "all 0.5s 0.9s",
+              top: locate.pathname == "/3" ? 0 : -30,
+              opacity: locate.pathname == "/3" ? 1 : 0,
+            }}
+          >
+            LANGUAGE
+          </p>
+          <ul
+            className="gap-5 flex relative"
+            style={{
+              transition: "all 0.5s 1s",
+              top: locate.pathname == "/3" ? 0 : -30,
+              opacity: locate.pathname == "/3" ? 1 : 0,
+            }}
+          >
             <li className="relative">
               <img
                 className="scale-[0.8] absolute top-[-5px]"

@@ -17,14 +17,9 @@ export default function WorksPage() {
                 구현하였습니다.
               </p>
             </div>
-            <button className="btn h-20">
-              <a
-                href="https://fbtjdwls04.github.io/2023_kb/kb/"
-                target="_blank"
-              >
-                사이트 바로가기
-              </a>
-            </button>
+            <a href="https://fbtjdwls04.github.io/2023_kb/kb/" target="_blank">
+              <button className="btn h-20 w-full">사이트 바로가기</button>
+            </a>
           </div>
           <div className="card w-96 glass h-[500px]">
             <figure>
@@ -40,11 +35,9 @@ export default function WorksPage() {
                 하였습니다.
               </p>
             </div>
-            <button className="btn h-20">
-              <a href="https://fbtjdwls04.github.io/my_note" target="_blank">
-                사이트 바로가기
-              </a>
-            </button>
+            <a href="https://fbtjdwls04.github.io/my_note" target="_blank">
+              <button className="btn h-20 w-full">사이트 바로가기</button>
+            </a>
           </div>
         </div>
       </section>
